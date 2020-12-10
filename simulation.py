@@ -9,9 +9,9 @@ from datetime import datetime, timedelta
 import sys
 
 from employmentstatusprobability import calculateEmploymentStatusProbability
-from employmentstatuschange import changeEmploymentStatus
-
 from incomeprobability import calculateIncomeProbability
+from employmentstatuschange import changeEmploymentStatus
+from maritalstatuschange import changeMaritalStatus
 
 from ageincrease import increaseAge
 from adulthood import generateAdulthood
@@ -34,12 +34,16 @@ def runSimulation(objs, runtime, start_date, df_data, df_employmentstatus, df_in
         for citizen in objs:
             #Increase age on birthday
             citizen.age = increaseAge(current_date, citizen.age, citizen.birthdate)
-            #Change the employment status when turning 15 and create life event
+            
+            #Create a life even employment status change and income change 
             df_data, citizen = changeEmploymentStatus(current_date, citizen.age, citizen.birthdate, citizen, df_data, 
                                                       employmentstatusprobability, incomeprobability)
             
             #Create a life event adulthood
             df_data, citizen = generateAdulthood(current_date, citizen.age, citizen.birthdate, citizen, df_data)
+            
+            #Create a life event divorced
+            df_data, citizen = changeMaritalStatus(current_date, citizen.maritalstatus, citizen.marriageenddate, citizen, df_data)
                     
         current_date += timedelta(days=1)
     return objs, df_data

@@ -25,7 +25,7 @@ df_incomedistribution = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/si
 
 #Initialize main variables
 start_date = '2011-01-01' #Set the start date of the simulation
-end_date = '2011-12-31' #Set the end data of the simulation
+end_date = '2013-12-31' #Set the end data of the simulation
 baseyear = int(start_date[:4])
 
 #set the scalar

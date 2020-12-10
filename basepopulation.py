@@ -27,7 +27,7 @@ from income import generateIncome
 #Create the class citizen
 class Citizen:
     def __init__(self, ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
-                 marriageenddate, employmentstatus, income, event):
+                 marriageenddate, employmentstatus, income, alive, event):
         self.ID = ID
         self.gender = gender
         self.age = age
@@ -38,6 +38,7 @@ class Citizen:
         self.marriageenddate = marriageenddate
         self.employmentstatus = employmentstatus
         self.income = income
+        self.alive = alive
         self.event = event
 
 def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifeexpectancy, df_maritalstatus,
@@ -62,7 +63,8 @@ def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifee
         marriageenddate = generateMarriageEndDate(baseyear, maritalstatus, marriageduration)
         employmentstatus = generateEmploymentStatus(employmentstatusprobability, age)
         income = generateIncome(incomeprobability, age)
+        alive = 1
         event = 'Created'
         population.append(Citizen(ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
-                                  marriageenddate, employmentstatus, income, event))
+                                  marriageenddate, employmentstatus, income, alive, event))
     return population 

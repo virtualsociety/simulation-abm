@@ -22,7 +22,7 @@ def changeEmploymentStatus(currentdate, age, birthdate, citizen, df, employments
     currentday = currentday[5:10]
     birthday = birthday[5:10]
     
-    if currentday == birthday and age == 15:
+    if currentday == birthday and age == 15 and citizen.alive ==  1:
         citizen.employmentstatus = choice(elements, p = employmentstatusprobability)
         
         incomeclass = choice(elements_2, p = incomeprobability)
@@ -38,10 +38,10 @@ def changeEmploymentStatus(currentdate, age, birthdate, citizen, df, employments
                      'Life expectancy': citizen.lifeexpectancyprobability, 'Marital status': citizen.maritalstatus,
                      'Marriage duration': citizen.marriageduration, 'Marriage end date': citizen.marriageenddate,
                      'Employment status': citizen.employmentstatus, 'Income': citizen.income,
-                     'Event': citizen.event}
+                     'Alive': citizen.alive, 'Event': citizen.event}
         df = df.append(new_event, ignore_index=True)
         
-    if currentday == birthday and age == 67:
+    if currentday == birthday and age == 67 and citizen.alive == 1:
         citizen.employmentstatus = 'Retired'
         citizen.income = citizen.income * 0.70
         citizen.event = 'Changed employment status and income'
@@ -50,9 +50,8 @@ def changeEmploymentStatus(currentdate, age, birthdate, citizen, df, employments
                      'Life expectancy': citizen.lifeexpectancyprobability, 'Marital status': citizen.maritalstatus,
                      'Marriage duration': citizen.marriageduration, 'Marriage end date': citizen.marriageenddate,
                      'Employment status': citizen.employmentstatus, 'Income': citizen.income,
-                     'Event': citizen.event}
+                     'Alive': citizen.alive, 'Event': citizen.event}
         df = df.append(new_event, ignore_index=True)
     
     return df, citizen
-        
         

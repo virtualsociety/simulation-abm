@@ -15,6 +15,8 @@ from maritalstatuschange import changeMaritalStatus
 
 from ageincrease import increaseAge
 from adulthood import generateAdulthood
+from deceased import generateDeceased
+from deceasedremove import deleteDeceased
 
 def runSimulation(objs, runtime, start_date, df_data, df_employmentstatus, df_income):
     print("")
@@ -44,6 +46,12 @@ def runSimulation(objs, runtime, start_date, df_data, df_employmentstatus, df_in
             
             #Create a life event divorced
             df_data, citizen = changeMaritalStatus(current_date, citizen.maritalstatus, citizen.marriageenddate, citizen, df_data)
+            
+            #Create a life event deceased
+            df_data, citizen = generateDeceased(current_date, citizen.alive, citizen.lifeexpectancyprobability, citizen, df_data)
+            
+            #Delete deceased from population
+            objs = deleteDeceased(objs, citizen)
                     
         current_date += timedelta(days=1)
     return objs, df_data

@@ -12,7 +12,7 @@ def changeMaritalStatus(currentdate, maritalstatus, marriageenddate, citizen, df
     currentday = currentday[:10]
     marriageendday = marriageendday[:10]
     
-    if currentday == marriageendday and maritalstatus == 'Married':
+    if currentday == marriageendday and maritalstatus == 'Married' and citizen.alive == 1:
         citizen.maritalstatus = 'Divorced'
         citizen.event = 'Changed marital status'
         new_event = {'Mutation date': currentdate, 'ID': citizen.ID, 'Gender': citizen.gender,

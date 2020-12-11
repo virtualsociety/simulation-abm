@@ -37,6 +37,7 @@ def changeEmploymentStatus(currentdate, age, birthdate, citizen, df, employments
                      'Age': citizen.age, 'Birthdate': citizen.birthdate, 
                      'Life expectancy': citizen.lifeexpectancyprobability, 'Marital status': citizen.maritalstatus,
                      'Marriage duration': citizen.marriageduration, 'Marriage end date': citizen.marriageenddate,
+                     'Marriage intention': citizen.marriageintention, 'Marriage age': citizen.marriageage,
                      'Employment status': citizen.employmentstatus, 'Income': citizen.income,
                      'Alive': citizen.alive, 'Event': citizen.event}
         df = df.append(new_event, ignore_index=True)

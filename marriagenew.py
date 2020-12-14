@@ -1,20 +1,21 @@
 '''
-Function to generate deceased citizens
+Function to generate new marriages
 
 By Dr. Raymond Hoogendoorn
 Copyright 2020
 '''
 
-import random
-
-def generateDeceased(currentdate, alive, lifeexpectancy, citizen, df):
-    
-    deceasedrandom = random.uniform(0,1)
-    lifeexpectancy_day = lifeexpectancy/365
-    
-    if deceasedrandom <= lifeexpectancy_day and alive == 1:
-        citizen.alive = 0
-        citizen.event = 'Deceased'
+def generateNewMarriage(currentdate, maritalstatus, weddingdate, citizen, df):
+    currentday = str(currentdate)
+    marriageday = str(weddingdate)
+    currentday = currentday[:10]
+    marriageday = marriageday[:10]
+    #print(currentday)
+    #print(marriageday)
+    if currentday == marriageday and maritalstatus == 'Single' and citizen.alive == 1:
+        print("Married")
+        citizen.maritalstatus = 'Married'
+        citizen.event = 'Changed marital status (married)'
         new_event = {'Mutation date': currentdate, 'ID': citizen.ID, 'Gender': citizen.gender,
                      'Age': citizen.age, 'Birthdate': citizen.birthdate, 
                      'Life expectancy': citizen.lifeexpectancyprobability, 'Marital status': citizen.maritalstatus,

@@ -19,6 +19,7 @@ def generateDataframeBasePopulation(objs, startdate):
     marriageenddatelist = list()
     marriageintentionlist = list()
     marriageagelist = list()
+    marriagedatelist = list()
     employmentstatuslist = list()
     incomelist = list()
     alivelist = list()
@@ -35,6 +36,7 @@ def generateDataframeBasePopulation(objs, startdate):
         marriageenddatelist.append(citizen.marriageenddate)
         marriageintentionlist.append(citizen.marriageintention)
         marriageagelist.append(citizen.marriageage)
+        marriagedatelist.append(citizen.marriagedate)
         employmentstatuslist.append(citizen.employmentstatus)
         incomelist.append(citizen.income)
         alivelist.append(citizen.alive)
@@ -51,6 +53,7 @@ def generateDataframeBasePopulation(objs, startdate):
     df['Marriage end date'] = marriageenddatelist
     df['Marriage intention'] = marriageintentionlist
     df['Marriage age'] = marriageagelist
+    df['Wedding date'] = marriagedatelist
     df['Employment status'] = employmentstatuslist
     df['Income'] = incomelist
     df['Alive'] = alivelist

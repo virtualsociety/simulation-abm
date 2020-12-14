@@ -23,6 +23,8 @@ from maritalstatus import generateMaritalStatus
 from marriageduration import generateMarriageDuration
 from marriageenddate import generateMarriageEndDate
 from marriageintention import generateMarriageIntention
+from marriageage import generateMarriageAge
+from marriagedate import generateWeddingDate
 from employmentstatus import generateEmploymentStatus
 from income import generateIncome
 
@@ -30,7 +32,8 @@ from income import generateIncome
 #Create the class citizen
 class Citizen:
     def __init__(self, ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
-                 marriageenddate, marriageintention, marriageage, employmentstatus, income, alive, event):
+                 marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, alive, 
+                 event):
         self.ID = ID
         self.gender = gender
         self.age = age
@@ -41,6 +44,7 @@ class Citizen:
         self.marriageenddate = marriageenddate
         self.marriageintention = marriageintention
         self.marriageage = marriageage
+        self.marriagedate = marriagedate
         self.employmentstatus = employmentstatus
         self.income = income
         self.alive = alive
@@ -69,11 +73,13 @@ def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifee
         marriageduration = generateMarriageDuration(marriagedurationprobability, maritalstatus)
         marriageenddate = generateMarriageEndDate(baseyear, maritalstatus, marriageduration)
         marriageintention = generateMarriageIntention(marriageintentionprobability)
-        marriageage = 18
+        marriageage = generateMarriageAge(marriageageprobability, maritalstatus, marriageintention)
+        marriagedate = generateWeddingDate(baseyear, marriageage, age)
         employmentstatus = generateEmploymentStatus(employmentstatusprobability, age)
         income = generateIncome(incomeprobability, age)
         alive = 1
         event = 'Created'
         population.append(Citizen(ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
-                                  marriageenddate, marriageintention, marriageage, employmentstatus, income, alive, event))
+                                  marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, 
+                                  alive, event))
     return population 

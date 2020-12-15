@@ -24,10 +24,12 @@ df_employmentstatus = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simu
 df_incomedistribution = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Inkomen_van_personen__inkomensklassen__persoonskenmerken_09122020_094158.csv', delimiter = ';')
 df_marriage = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Huwen_en_huwelijksontbinding__geslacht__leeftijd__31_december___regio_11122020_100116.csv', delimiter = ';')
 df_marriage2 = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Bevolking__geslacht__leeftijd_en_burgerlijke_staat__1_januari_11122020_105220.csv', delimiter = ';')
+df_withchildren =  pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Particuliere_huishoudens_naar_samenstelling_en_grootte__1_januari_14122020_114929.csv', delimiter = ';')
+df_nrchildren = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Huishoudens__kindertal__leeftijdsklasse_kind__regio__1_januari_14122020_114332.csv', delimiter = ';')
 
 #Initialize main variables
 start_date = '2011-01-01' #Set the start date of the simulation
-end_date = '2020-12-31' #Set the end data of the simulation
+end_date = '2011-12-31' #Set the end data of the simulation
 baseyear = int(start_date[:4])
 
 #set the scalar
@@ -44,7 +46,7 @@ else:
     print('Determining base population')
     populationsize = int(calculateBasePopulationSize(df_gender, baseyear, scalar))
     population = generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifeexpextancy, df_maritalstatus, df_marriageduration,
-                                        df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2)
+                                        df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2, df_withchildren, df_nrchildren)
     dill.dump_session('population.pkl') 
     
 #Process the data basepopulation

@@ -22,6 +22,8 @@ def generateDataframeBasePopulation(objs, startdate):
     marriagedatelist = list()
     employmentstatuslist = list()
     incomelist = list()
+    childrenlist = list()
+    nrchildrenlist = list()
     alivelist = list()
     eventlist = list()
     for citizen in objs:
@@ -39,6 +41,8 @@ def generateDataframeBasePopulation(objs, startdate):
         marriagedatelist.append(citizen.marriagedate)
         employmentstatuslist.append(citizen.employmentstatus)
         incomelist.append(citizen.income)
+        childrenlist.append(citizen.children)
+        nrchildrenlist.append(citizen.nrchildren)
         alivelist.append(citizen.alive)
         eventlist.append(citizen.event)
     df = pd.DataFrame()
@@ -56,6 +60,8 @@ def generateDataframeBasePopulation(objs, startdate):
     df['Wedding date'] = marriagedatelist
     df['Employment status'] = employmentstatuslist
     df['Income'] = incomelist
+    df['Children'] = childrenlist
+    df['NrChildren'] = nrchildrenlist
     df['Alive'] = alivelist
     df['Event'] = eventlist
     return df

@@ -16,6 +16,9 @@ from marriageageprobability import calculateMarriageAgeProbability
 from marriageintentionprobability import calculateMarriageIntentionProbability
 from employmentstatusprobability import calculateEmploymentStatusProbability
 from incomeprobability import calculateIncomeProbability
+from childrenprobability import calculateChildrenProbability
+from nrchildrenprobability import calculateNrChildrenProbability
+
 from gender import generateGender
 from age import generateAge
 from birthdate import generateBirthdate
@@ -27,13 +30,16 @@ from marriageage import generateMarriageAge
 from marriagedate import generateWeddingDate
 from employmentstatus import generateEmploymentStatus
 from income import generateIncome
+from children import generateChildren 
+from nrchildren import generateNrChildren
+
 
 
 #Create the class citizen
 class Citizen:
     def __init__(self, ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
-                 marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, alive, 
-                 event):
+                 marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, children, 
+                 nrchildren, alive, event):
         self.ID = ID
         self.gender = gender
         self.age = age
@@ -47,11 +53,14 @@ class Citizen:
         self.marriagedate = marriagedate
         self.employmentstatus = employmentstatus
         self.income = income
+        self.children = children
+        self.nrchildren = nrchildren
         self.alive = alive
         self.event = event
 
 def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifeexpectancy, df_maritalstatus,
-                           df_marriageduration, df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2):
+                           df_marriageduration, df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2,
+                           df_withchildren, df_nrchildren):
     population = list()
     genderprobability = calculateGenderProbability(df_gender, baseyear)
     ageprobability = calculateAgeProbability(df_age, baseyear)
@@ -59,6 +68,8 @@ def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifee
     employmentstatusprobability = calculateEmploymentStatusProbability(df_employmentstatus, baseyear)
     incomeprobability = calculateIncomeProbability(df_incomedistribution, baseyear)
     marriageintentionprobability = calculateMarriageIntentionProbability(df_marriage2, baseyear)
+    childrenprobability = calculateChildrenProbability(df_withchildren, baseyear)
+    nrchildrenprobability = calculateNrChildrenProbability(df_nrchildren, baseyear)
     
     for ID in range(populationsize):
         b = ("Processing citizens: " + str(ID))
@@ -77,9 +88,11 @@ def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifee
         marriagedate = generateWeddingDate(baseyear, marriageage, age)
         employmentstatus = generateEmploymentStatus(employmentstatusprobability, age)
         income = generateIncome(incomeprobability, age)
+        children = generateChildren(childrenprobability)
+        nrchildren = generateNrChildren(nrchildrenprobability, maritalstatus, age, children)
         alive = 1
         event = 'Created'
         population.append(Citizen(ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
                                   marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, 
-                                  alive, event))
+                                  children, nrchildren, alive, event))
     return population 

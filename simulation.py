@@ -18,6 +18,7 @@ from adulthood import generateAdulthood
 from marriagenew import generateNewMarriage
 from deceased import generateDeceased
 from deceasedremove import deleteDeceased
+from births import generateBirths
 
 def runSimulation(objs, runtime, start_date, df_data, df_employmentstatus, df_income):
     print("")
@@ -56,6 +57,8 @@ def runSimulation(objs, runtime, start_date, df_data, df_employmentstatus, df_in
             
             #Delete deceased from population
             objs = deleteDeceased(objs, citizen)
+            
+            df_data, citizen, objs = generateBirths(current_date, citizen.birthingdate, citizen, objs, df_data)
                     
         current_date += timedelta(days=1)
     return objs, df_data

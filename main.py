@@ -26,10 +26,14 @@ df_marriage = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-a
 df_marriage2 = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Bevolking__geslacht__leeftijd_en_burgerlijke_staat__1_januari_11122020_105220.csv', delimiter = ';')
 df_withchildren =  pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Particuliere_huishoudens_naar_samenstelling_en_grootte__1_januari_14122020_114929.csv', delimiter = ';')
 df_nrchildren = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Huishoudens__kindertal__leeftijdsklasse_kind__regio__1_januari_14122020_114332.csv', delimiter = ';')
+df_birthage =  pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/Levend_geboren_kinderen__migratieachtergrond_moeder_en_leeftijd_moeder_14122020_112329.csv', delimiter = ';')
+df_capital = pd.read_csv('C:/Users/Raymo/OneDrive/Documents/GitHub/simulation-abm/Input_2/vermogensklassen.csv', delimiter = ';')
+
+print(df_incomedistribution.head())
 
 #Initialize main variables
 start_date = '2011-01-01' #Set the start date of the simulation
-end_date = '2011-12-31' #Set the end data of the simulation
+end_date = '2012-12-31' #Set the end data of the simulation
 baseyear = int(start_date[:4])
 
 #set the scalar
@@ -46,7 +50,8 @@ else:
     print('Determining base population')
     populationsize = int(calculateBasePopulationSize(df_gender, baseyear, scalar))
     population = generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifeexpextancy, df_maritalstatus, df_marriageduration,
-                                        df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2, df_withchildren, df_nrchildren)
+                                        df_employmentstatus, df_incomedistribution, df_marriage, df_marriage2, df_withchildren, df_nrchildren,
+                                        df_birthage, df_capital)
     dill.dump_session('population.pkl') 
     
 #Process the data basepopulation

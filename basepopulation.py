@@ -36,13 +36,12 @@ from capital import generateCapital
 from children import generateChildren 
 from nrchildren import generateNrChildren
 from birthage import generateBirthAge
-from birthingdate import generateBirthingDate
 
 #Create the class citizen
 class Citizen:
     def __init__(self, ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
                  marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, 
-                 capital, children, nrchildren, birthage, birthingdate, alive, event):
+                 capital, children, nrchildren, birthage, alive, event):
         self.ID = ID
         self.gender = gender
         self.age = age
@@ -60,7 +59,6 @@ class Citizen:
         self.children = children
         self.nrchildren = nrchildren
         self.birthage = birthage
-        self.birthingdate = birthingdate
         self.alive = alive
         self.event = event
 
@@ -100,10 +98,9 @@ def generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifee
         children = generateChildren(childrenprobability)
         nrchildren = generateNrChildren(nrchildrenprobability, maritalstatus, age, children)
         birthage = generateBirthAge(birthageprobability, gender, age)
-        birthingdate = generateBirthingDate(baseyear, age, birthage)
         alive = 1
         event = 'Created'
         population.append(Citizen(ID, gender, age, birthdate, lifeexpectancyprobability, maritalstatus, marriageduration,
                                   marriageenddate, marriageintention, marriageage, marriagedate, employmentstatus, income, 
-                                  capital, children, nrchildren, birthage, birthingdate, alive, event))
+                                  capital, children, nrchildren, birthage, alive, event))
     return population 

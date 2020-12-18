@@ -12,7 +12,7 @@ def generateIncome(prob_distribution, age):
     elements = range(0,8)
     min_range = [0, 10000, 20000, 30000, 40000, 50000, 100000, 200000]
     max_range = [10000, 20000, 30000, 40000, 50000, 100000, 200000, 500000]
-    if age >= 15:
+    if age >= 18:
         incomeclass = choice(elements, p = prob_distribution)
         min_income = min_range[incomeclass]
         max_income = max_range[incomeclass]

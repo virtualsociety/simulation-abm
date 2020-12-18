@@ -10,7 +10,7 @@ from numpy.random import choice
 def generateEmploymentStatus(prob_dist, age):
     elements = ['Permanent contract', 'Flexible contract', 'Entrepreneur without personnel',
                 'Entrepreneur with personel', 'Family business', 'Unknown', 'Unemployed']
-    if age < 15:
+    if age < 18:
         employmentstatus = 'Child'
     elif age > 67:
         employmentstatus = 'Retired'

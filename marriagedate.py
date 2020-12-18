@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 
 def generateWeddingDate(baseyear, marriageage, age):
     if marriageage != None:
+        baseyear = int(baseyear)
         wedding_year = (baseyear) + (marriageage - age)
         min_year = wedding_year
         max_year = wedding_year

@@ -6,7 +6,8 @@ Copyright 2020
 '''
 
 def calculateMarriageDurationProbability(df_marriageduration, baseyear):
-    df_year = df_marriageduration[df_marriageduration['Perioden'] == baseyear]
+    rowyears = int(baseyear)
+    df_year = df_marriageduration[df_marriageduration['Perioden'] == rowyears]
     prob = df_year['Aantal']
     prob_list = list()
     for i in range(len(prob)):

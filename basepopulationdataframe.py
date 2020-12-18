@@ -26,7 +26,6 @@ def generateDataframeBasePopulation(objs, startdate):
     childrenlist = list()
     nrchildrenlist = list()
     birthagelist = list()
-    birthingdatelist = list()
     alivelist = list()
     eventlist = list()
     for citizen in objs:
@@ -48,7 +47,6 @@ def generateDataframeBasePopulation(objs, startdate):
         childrenlist.append(citizen.children)
         nrchildrenlist.append(citizen.nrchildren)
         birthagelist.append(citizen.birthage)
-        birthingdatelist.append(citizen.birthingdate)
         alivelist.append(citizen.alive)
         eventlist.append(citizen.event)
     df = pd.DataFrame()
@@ -70,7 +68,6 @@ def generateDataframeBasePopulation(objs, startdate):
     df['Children'] = childrenlist
     df['NrChildren'] = nrchildrenlist
     df['Birth age'] = birthagelist
-    df['Birthing date'] = birthingdatelist
     df['Alive'] = alivelist
     df['Event'] = eventlist
     return df

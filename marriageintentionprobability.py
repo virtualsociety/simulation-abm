@@ -7,7 +7,7 @@ Copyright 2020
 
 
 def calculateMarriageIntentionProbability(df_marriage2, baseyear):
-    year = baseyear
+    year = int(baseyear)
     df_current = df_marriage2[df_marriage2['Perioden'] == year]
     marriageintentionprob = list()
     for i in range(len(df_current)):

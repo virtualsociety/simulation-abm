@@ -13,6 +13,8 @@ from ageincrease import increaseAge
 from adulthood import generateAdulthood
 from marriagesnew import generateNewMarriages
 from divorces import generateDivorces
+from retired import generateRetired
+from deceased import generateDeceased
 
 def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage, df_income,
                   df_capital, df_employmentstatus, df_marriageduration):
@@ -26,7 +28,7 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
         
         for citizen in objs:
             #Increase age at birthday
-            citizen.age = increaseAge(current_date, citizen.age, citizen.birthdate)
+            citizen.age = increaseAge(current_date, citizen.age, citizen.birthdate, citizen)
             
             #Reach adulthood
             df_data, citizen = generateAdulthood(current_date, citizen.age, citizen.birthdate, citizen, df_data, df_marriage2, 
@@ -35,8 +37,18 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
             #Get married
             df_data, citizen = generateNewMarriages(current_date, citizen, df_data, df_marriageduration)
             
+            #Create children
+            
+            
             #End marriage
             df_data, citizen = generateDivorces(current_date, citizen, df_data)
             
+            #Retired
+            df_data, citizen = generateRetired(current_date, citizen, df_data)
+            
+            #Deceased
+            df_data, citizen =  generateDeceased (current_date, citizen, df_data)
+            
         current_date += timedelta(days=1)
+        
     return objs, df_data

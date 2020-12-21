@@ -10,6 +10,7 @@ import dill
 
 from basepopulationsize import calculateBasePopulationSize
 from basepopulation import generateBasePopulation
+from couplenr import generateCouplenrs
 from basepopulationdataframe import generateDataframeBasePopulation
 from runtime import generateRuntime
 from runsimulation import runSimulation
@@ -50,6 +51,9 @@ else:
     population = generateBasePopulation(populationsize, baseyear, df_gender, df_age, df_lifeexpextancy, df_maritalstatus, df_marriageduration,
                                         df_employmentstatus, df_income, df_marriage, df_marriage2, df_withchildren, df_nrchildren,
                                         df_birthage, df_capital)
+    print("")
+    print('Creating couples')
+    population = generateCouplenrs(population)
     dill.dump_session('population.pkl') 
     
 #Process the data basepopulation

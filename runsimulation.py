@@ -15,6 +15,8 @@ from marriagesnew import generateNewMarriages
 from divorces import generateDivorces
 from retired import generateRetired
 from deceased import generateDeceased
+from widow import generateWidows
+from deceaseddelete import deleteDeceased
 
 def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage, df_income,
                   df_capital, df_employmentstatus, df_marriageduration):
@@ -35,7 +37,7 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
                                                  df_marriage, df_income, df_capital, df_employmentstatus)
             
             #Get married
-            df_data, citizen = generateNewMarriages(current_date, citizen, df_data, df_marriageduration)
+            df_data, citizen = generateNewMarriages(current_date, citizen, df_data, df_marriageduration, objs)
             
             #Create children
             
@@ -48,6 +50,14 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
             
             #Deceased
             df_data, citizen =  generateDeceased (current_date, citizen, df_data)
+            
+            #Change marital status partner deceased
+            df_data, objs = generateWidows (current_date, citizen, objs, df_data)
+            
+            #Delete deceased from list
+            
+            objs = deleteDeceased(citizen, objs)
+        
             
         current_date += timedelta(days=1)
         

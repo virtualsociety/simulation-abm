@@ -39,7 +39,7 @@ baseyear = int(start_date[:4])
 scalar = 1000
 
 #Set the pickle
-pickle = 'N'
+pickle = 'Y'
 
 #Construct or load the base population
 if pickle == 'Y':

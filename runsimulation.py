@@ -12,6 +12,7 @@ import warnings
 from ageincrease import increaseAge
 from adulthood import generateAdulthood
 from marriagesnew import generateNewMarriages
+from childrennew import generateNewChildren
 from divorces import generateDivorces
 from retired import generateRetired
 from deceased import generateDeceased
@@ -19,7 +20,7 @@ from widow import generateWidows
 from deceaseddelete import deleteDeceased
 
 def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage, df_income,
-                  df_capital, df_employmentstatus, df_marriageduration):
+                  df_capital, df_employmentstatus, df_marriageduration, df_nrchildren, scalar):
     warnings.filterwarnings("ignore")
     print("")
     date_format = "%Y-%m-%d"
@@ -39,8 +40,8 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
             #Get married
             df_data, citizen = generateNewMarriages(current_date, citizen, df_data, df_marriageduration, objs)
             
-            #Create children
-            
+            #Create children for citizen
+            df_data, citizen, objs = generateNewChildren(current_date, citizen, df_data, df_nrchildren, objs)
             
             #End marriage
             df_data, citizen = generateDivorces(current_date, citizen, df_data)
@@ -55,10 +56,11 @@ def runSimulation(objs, runtime, start_date, df_data, df_marriage2, df_marriage,
             df_data, objs = generateWidows (current_date, citizen, objs, df_data)
             
             #Delete deceased from list
-            
             objs = deleteDeceased(citizen, objs)
-        
             
+            #Create new children
+            
+        
         current_date += timedelta(days=1)
         
     return objs, df_data

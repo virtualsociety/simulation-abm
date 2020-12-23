@@ -23,7 +23,7 @@ def generateDeceased (currentdate, citizen, df):
                      'Marriage age': citizen.marriageage, 'Wedding date': citizen.marriagedate, 
                      'Children': citizen.children, 'Employment status': citizen.employmentstatus, 'Income': citizen.income, 
                      'Capital': citizen.capital, 'NrChildren': citizen.nrchildren, 'Birth age': citizen.birthage, 
-                     'Alive': citizen.alive, 'Event': citizen.event}
+                     'Birthing date': citizen.birthingdate, 'Alive': citizen.alive, 'Event': citizen.event}
         
         df = df.append(new_event, ignore_index=True)
     

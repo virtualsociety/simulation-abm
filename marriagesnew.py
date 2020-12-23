@@ -40,13 +40,13 @@ def generateNewMarriages(currentdate, citizen, df, df_marriageduration, objs):
                      'Marriage end date': citizen.marriageenddate, 'Marriage intention': citizen.marriageintention, 
                      'Marriage age': citizen.marriageage, 'Wedding date': citizen.marriagedate, 
                      'Children': citizen.children, 'Employment status': citizen.employmentstatus, 'Income': citizen.income, 
-                     'Capital': citizen.capital, 'NrChildren': citizen.nrchildren, 'Birth age': citizen.birthage, 
-                     'Alive': citizen.alive, 'Event': citizen.event}
+                     'Capital': citizen.capital, 'NrChildren': citizen.nrchildren, 'Birth age': citizen.birthage,
+                     'Birthing date': citizen.birthingdate, 'Alive': citizen.alive, 'Event': citizen.event}
         
         df = df.append(new_event, ignore_index=True)
         
         for citizen1 in objs:
-            if citizen.gender == 'Male' and citizen1.gender == 'Female' and citizen1.age > 17 and citizen1.maritalstatus == 'Single':
+            if citizen.gender == 'Male' and citizen1.gender == 'Female' and citizen1.age > 17 and citizen1.maritalstatus == 'Single' and citizen1.alive == 1:
                 citizen1.maritalstatus = 'Married'
                 citizen1.couplenr = citizen.couplenr
                 citizen1.marriageduration = citizen.marriageduration
@@ -60,11 +60,11 @@ def generateNewMarriages(currentdate, citizen, df, df_marriageduration, objs):
                      'Marriage age': citizen1.marriageage, 'Wedding date': citizen1.marriagedate, 
                      'Children': citizen1.children, 'Employment status': citizen1.employmentstatus, 'Income': citizen1.income, 
                      'Capital': citizen1.capital, 'NrChildren': citizen1.nrchildren, 'Birth age': citizen1.birthage, 
-                     'Alive': citizen1.alive, 'Event': citizen1.event}
+                     'Birthing date': citizen1.birthingdate, 'Alive': citizen1.alive, 'Event': citizen1.event}
                 df = df.append(new_event, ignore_index=True)
                 break
             
-            elif citizen.gender == 'Female' and citizen1.gender == 'Male' and citizen1.age > 17 and citizen1.maritalstatus == 'Single':
+            elif citizen.gender == 'Female' and citizen1.gender == 'Male' and citizen1.age > 17 and citizen1.maritalstatus == 'Single' and citizen1.alive == 1:
                 citizen1.maritalstatus = 'Married'
                 citizen1.couplenr = citizen.couplenr
                 citizen1.marriageduration = citizen.marriageduration
@@ -78,7 +78,7 @@ def generateNewMarriages(currentdate, citizen, df, df_marriageduration, objs):
                      'Marriage age': citizen1.marriageage, 'Wedding date': citizen1.marriagedate, 
                      'Children': citizen1.children, 'Employment status': citizen1.employmentstatus, 'Income': citizen1.income, 
                      'Capital': citizen1.capital, 'NrChildren': citizen1.nrchildren, 'Birth age': citizen1.birthage, 
-                     'Alive': citizen1.alive, 'Event': citizen1.event}
+                     'Birthing date': citizen1.birthingdate, 'Alive': citizen1.alive, 'Event': citizen1.event}
                 df = df.append(new_event, ignore_index=True)
                 break
         

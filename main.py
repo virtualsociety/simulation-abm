@@ -32,14 +32,14 @@ df_capital = pd.read_csv('./Input_2/vermogensklassen.csv', delimiter = ';')
 
 #Initialize main variables
 start_date = '2011-01-01' #Set the start date of the simulation
-end_date = '2011-12-31' #Set the end data of the simulation
+end_date = '2012-12-31' #Set the end data of the simulation
 baseyear = int(start_date[:4])
 
 #Set the scalar
 scalar = 1000
 
 #Set the pickle
-pickle = 'Y'
+pickle = 'N'
 
 #Construct or load the base population
 if pickle == 'Y':
@@ -63,6 +63,6 @@ df_data_base.to_csv('basepopulation.csv')
 #Run the simulation
 runtime =generateRuntime(start_date, end_date)
 population, df_data_simulated = runSimulation(population, runtime, start_date, df_data_base, df_marriage2, df_marriage, df_income, df_capital, 
-                                              df_employmentstatus, df_marriageduration)
+                                              df_employmentstatus, df_marriageduration, df_nrchildren, scalar)
 df_data_simulated = df_data_simulated.sort_values(by=['ID', 'Mutation date'])
 df_data_simulated.to_csv('simulatedpopulation.csv') 

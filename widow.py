@@ -23,7 +23,7 @@ def generateWidows(currentdate, citizen, objs, df):
                              'Marriage age': citizen_partner.marriageage, 'Wedding date': citizen_partner.marriagedate, 
                              'Children': citizen_partner.children, 'Employment status': citizen_partner.employmentstatus, 'Income': citizen_partner.income, 
                              'Capital': citizen_partner.capital, 'NrChildren': citizen_partner.nrchildren, 'Birth age': citizen_partner.birthage, 
-                             'Alive': citizen_partner.alive, 'Event': citizen_partner.event}
+                             'Birthing date': citizen_partner.birthingdate, 'Alive': citizen_partner.alive, 'Event': citizen_partner.event}
                 
                 df = df.append(new_event, ignore_index=True)
     return df, objs

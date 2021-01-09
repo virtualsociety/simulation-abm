@@ -28,7 +28,7 @@ def generateNewMarriages(currentdate, citizen, df, df_marriageduration, objs):
         maxcouplenr = 0
         
         for citizen1 in objs:
-            if citizen1.couplenr > maxcouplenr:
+            if int(citizen1.couplenr) > int(maxcouplenr):
                 maxcouplenr = citizen1.couplenr
         
         citizen.couplenr = maxcouplenr + 1

@@ -5,17 +5,15 @@ By Dr. Raymond Hoogendoorn
 Copyright 2020
 '''
 
-from nrchildrenprobability import calculateNrChildrenProbability
-from nrchildren import generateNrChildren
+from newcitizen import generateCitizen
 
-def generateNewChildren(currentdate, citizen, df, df_nrchildren, objs):
+def generateNewChildren(currentdate, citizen, df, df_nrchildren, objs, df_lifeexpectancy,
+                        df_gender, df_maritalstatus):
     currentday = str(currentdate)
     currentday = currentday[:10]
-    currentyear = currentday[:4]
     birthingday = str(citizen.birthingdate)
     if currentday == birthingday and citizen.alive == 1 and citizen.maritalstatus == 'Married':
-        nrchildrenprobability = calculateNrChildrenProbability(df_nrchildren, currentyear)
-        citizen.nrchildren = generateNrChildren(nrchildrenprobability, citizen.maritalstatus, citizen.age, citizen.children)
+        citizen.nrchildren = citizen.nrchildren + 1
         
         citizen.event = 'Life event: Children born'
         mutationdate = str(currentdate)
@@ -46,5 +44,9 @@ def generateNewChildren(currentdate, citizen, df, df_nrchildren, objs):
                              'Children': citizen1.children, 'Employment status': citizen1.employmentstatus, 'Income': citizen1.income, 
                              'Capital': citizen1.capital, 'NrChildren': citizen1.nrchildren, 'Birth age': citizen1.birthage, 
                              'Birthing date': citizen1.birthingdate, 'Alive': citizen1.alive, 'Event': citizen1.event}
+                
+                df = df.append(new_event, ignore_index=True)
+            
+        objs, df = generateCitizen(objs, df, currentdate, df_lifeexpectancy, df_gender, df_maritalstatus)
         
     return df, citizen, objs
